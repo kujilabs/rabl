@@ -48,7 +48,7 @@ module Rabl
 
       # Wrap result in root
       if options[:root_name].present?
-        @_root_name = options[:root_name]
+        @_root_name = options[:root_name].respond_to?(:call) ? options[:root_name].call(@_object) : options[:root_name]
       else # no root
         @_root_name = nil
       end
